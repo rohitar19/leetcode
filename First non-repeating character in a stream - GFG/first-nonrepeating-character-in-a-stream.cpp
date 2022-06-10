@@ -6,34 +6,35 @@ using namespace std;
 class Solution {
 	public:
 		string FirstNonRepeating(string A){
+		    string ans;
 		    unordered_map<char,int>m;
 		    queue<int>q;
 		    
-		    string ans="";
-		    for(int i =0 ; i<A.size();i++){
-		        if(m[A[i]]==0)
-		        q.push(A[i]);
-		        
-		        m[A[i]]++;
-		        
-		    
-		    
+		      for(int i =0 ; i< A.size(); i ++){
+		          if(m[A[i]]==0)
+		           q.push(A[i]);
+		           
+		           m[A[i]]++;
+		      
+
 		        while(!q.empty() && m[q.front()]>1)
-                {
-                    q.pop();
-                }
-                
-                if(!q.empty())
-                {
-                    ans.push_back( q.front());
-                }
-                else{
-                    ans.push_back('#');
-                }
-                
-		    }
-                
-                return ans;
+		          q.pop();
+		        
+		        if(q.empty())
+		        ans.push_back('#');
+		        
+		        else
+		        ans.push_back(q.front());
+		        
+		      }
+		      
+		        return ans;
+		        
+		        
+		        
+		        
+		          
+		      
             }
 		
 
