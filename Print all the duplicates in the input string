@@ -1,0 +1,43 @@
+// transform(a.begin(),a.end(),a.begin(),::tolower);
+//  transform(b.begin(),b.end(),b.begin(),::tolower);
+ #include<bits/stdc++.h>
+#include <iostream>
+#include<cstring>
+#include<queue>
+#include<cctype>
+#include<cmath>
+#include<vector>
+#include<algorithm>
+#include<map>
+#include<iterator>
+#include<set>
+#define ll long long int
+
+ 
+using namespace std;
+
+int main(){
+    
+    //  #ifndef ONLINE_JUDGE
+    // freopen("input.txt","r",stdin);
+    // freopen("output.txt","w",stdout);
+    //  #endif 
+   unordered_map<char,int>mp;
+   string s;
+   cin>>s;
+   int n=s.size();
+   
+   for(int i =0 ; i< n ; i++){
+       mp[s[i]]++;
+   }
+   
+    for(auto it :mp){
+      if(it.second>1)
+        cout<<it.first<<" "<<it.second<<endl;
+    }
+    
+   
+   
+   
+return 0;
+}
