@@ -1,0 +1,34 @@
+class Solution {
+    public:
+     void printCombination(int ind ,vector<int>&arr ,int target ,vector<vector<int>>&ans , vector<int>&ds ){
+         if(ind==arr.size()){
+             if(target==0)
+                 ans.push_back(ds);
+             
+             return;
+             
+         }
+         
+         if(arr[ind]<=target){
+             //pick the element means ind not change 
+             ds.push_back(arr[ind]);
+             printCombination(ind, arr, target-arr[ind] , ans , ds);
+             ds.pop_back();
+             
+         }
+         //not picking the elemnt
+         printCombination(ind+1, arr, target , ans , ds);
+         
+         
+         
+     }
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>>ans;
+        vector<int>ds;
+        printCombination(0,candidates,target,ans , ds);
+        return ans;
+        
+        
+    }
+};
