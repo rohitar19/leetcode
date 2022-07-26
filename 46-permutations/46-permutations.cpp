@@ -1,34 +1,26 @@
-class Solution {
+class Solution { // space optimization
     public:
-    void  printPermutation(vector<int>&nums ,vector<int>&ds , vector<vector<int>>&ans , vector<int>& freq ){
-             if(ds.size()==nums.size()){
-                ans.push_back(ds);
-                 return ;
-                 
-             }   
+    void  printPermutation( int ind ,vector<int>&nums , vector<vector<int>>&ans ){
         
-           for(int i=0 ; i<nums.size() ; i++){
-               if(freq[i]==0){
-                   ds.push_back(nums[i]);
-                   freq[i]=1;
-                 printPermutation(nums , ds , ans , freq);
-                   freq[i]=0;
-                   ds.pop_back();
-                   
-                   
-               }
-               
-           }
+        if(ind==nums.size()){
+            ans.push_back(nums);
+            return;
+        }
+        
+        for(int i= ind ; i<nums.size() ; i++){
+            swap(nums[ind], nums[i]);
+            printPermutation(ind+1 , nums , ans);
+            swap(nums[ind], nums[i]);
+            
+        }
+            
     }
 
     
 public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>>ans;
-        vector<int>ds;
-        int n=nums.size();
-        vector<int>freq(n,0);
-        printPermutation(nums, ds, ans, freq);
+        printPermutation(0, nums, ans);
         return ans;
         
     }
