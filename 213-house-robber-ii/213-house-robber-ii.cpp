@@ -1,42 +1,39 @@
 class Solution {
-public:
-     long int maxisum(vector<int>& hulu) {
-         int n = hulu.size();
-       
-        long int prev=hulu[0];
-         long int prev2=0;
+    
+    int maxSum(vector<int>& nums) {
+       int n =nums.size();
+        int prev=0 ; int prev2=0; int cur=0;
+        // vector<int>dp(n,0);
+        prev=nums[0];
+        for(int ind=1 ; ind<n ; ind++){
+             int notTake=0+prev;
+      
+       int take=nums[ind];
+           if(ind>1)
+               take+=prev2;
         
-        
-        
-        for(int i =1 ; i< n ; i++){
-            
-           int pick= hulu[i];
-            if(i>1) pick+=prev2;
-           int notpick=0+prev;
-            
-            int cur=max(pick , notpick);
-            
+       cur=max(take, notTake );
             prev2=prev;
             prev=cur;
+            
         }
-        
-         
         return prev;
-             
       
     }
     
-    int rob(vector<int>& nums) {
-         int n = nums.size();
+    
+public:
+    int rob(vector<int>& num) {
+         int n = num.size();
          vector<int>temp1,temp2;
-        if(n==1) return nums[0];
-        
-        for(int i =0 ; i<n ; i++){
-            if(i!=0 ) temp1.push_back(nums[i]);
-            if(i!=n-1) temp2.push_back(nums[i]);
+         if(n==1) return num[0];
+        for(int i=0 ; i< n ; i++){
+            if(i!=0) temp2.push_back(num[i]);
+            if(i!=n-1) temp1.push_back(num[i]);
+            
+           
         }
+         return max(maxSum(temp1) , maxSum(temp2));
         
-        return max(maxisum(temp1) , maxisum(temp2));
-         
     }
 };
