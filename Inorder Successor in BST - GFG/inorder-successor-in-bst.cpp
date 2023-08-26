@@ -112,18 +112,37 @@ class Solution{
     // returns the inorder successor of the Node x in BST (rooted at 'root')
     Node * inOrderSuccessor(Node *root, Node *x)
     {
-        if(root==NULL) return NULL;
-        Node* suc=NULL;
-        while(root){
-            if(x->data >= root->data){
-                root=root->right;
-            }
-            else{
-                suc=root;
-                root=root->left;
-            }
-        }
-        return suc;
+         Node* cur=root;
+         Node* suc=NULL;
+         while(cur){
+             if(cur->left==NULL){
+                 if(cur->data >x->data){
+                     suc=cur;
+                     break;
+                 }
+                 cur=cur->right;
+             }
+             else{
+                 Node* prev=cur->left;
+                 while(prev->right && prev->right !=cur){
+                     prev=prev->right;
+                 }
+                 
+                 if(prev->right==NULL){
+                     prev->right=cur;
+                     cur=cur->left;
+                 }
+                 else{
+                     prev->right=NULL;
+                     if(cur->data > x->data){
+                         suc=cur;
+                         break;
+                     }
+                     cur=cur->right;
+                 }
+             }
+         }
+         return suc;
     }
 };
 
