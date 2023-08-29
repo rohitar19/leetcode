@@ -142,8 +142,9 @@ struct Node
 void preorder(Node* root , vector<int>&pre){
     if(root==NULL) return ;
     
-    pre.push_back(root->data);
+    
     preorder(root->left , pre);
+    pre.push_back(root->data);
     preorder(root->right , pre);
 }
 
@@ -167,7 +168,7 @@ Node* buildBalancedTree(Node* root)
     vector<int>pre;
     preorder(root , pre);
     
-    sort(pre.begin() , pre.end());
+    // sort(pre.begin() , pre.end());
     
     Node* Newroot=inorder(pre ,0 , pre.size()-1);
     
