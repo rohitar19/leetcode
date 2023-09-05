@@ -104,7 +104,7 @@ class Solution
     //from left to right in Binary Tree.
     vector<int> topView(Node *root)
     {
-        vector<int>ans;
+      vector<int>ans;
         map<int,int>m;
         queue<pair<Node* , int>>q;
         q.push({root , 0});
